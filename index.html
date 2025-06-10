@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLFDEV | Sites que Convertem Visitantes em Clientes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        :root {
+            --azul-profundo: #0f1a3d;
+            --dourado: #d4af37;
+            --vermelho-vinho: #a71d31;
+            --creme: #f5f0e6;
+            --preto-sutil: #1a1a1a;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--preto-sutil);
+            background-color: var(--creme);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        /* Efeito de Textura no Fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000') center/cover no-repeat;
+            opacity: 0.03;
+            z-index: -1;
+        }
+        /* Menu de Navegação */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 240, 230, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(214, 175, 55, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dourado);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: var(--azul-profundo);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover {
+            color: var(--vermelho-vinho);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dourado);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        /* Hero Section */
+        .hero {
+            padding: 180px 20px 100px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to right, rgba(245, 240, 230, 0.9) 0%, rgba(245, 240, 230, 0.7) 100%);
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--azul-profundo);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 35px;
+            color: var(--azul-profundo);
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--dourado), #e8c547);
+            color: var(--preto-sutil);
+            padding: 17px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: all 0.4s;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(45deg, #e8c547, var(--dourado));
+        }
+        /* Seções */
+        section {
+            padding: 100px 20px;
+            position: relative;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.7rem;
+            text-align: center;
+            margin-bottom: 70px;
+            color: var(--azul-profundo);
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--dourado);
+        }
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            margin: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(15, 26, 61, 0.08);
+            border: 1px solid rgba(214, 175, 55, 0.15);
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(15, 26, 61, 0.15);
+            border-color: rgba(214, 175, 55, 0.3);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: var(--dourado);
+            margin-bottom: 25px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--azul-profundo);
+            font-weight: 700;
+        }
+        .card p {
+            color: #555;
+            font-size: 1rem;
+        }
+        /* Layout Responsivo */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Portfolio Items */
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            flex: 1 1 350px;
+            max-width: 500px;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 26, 61, 0.9) 0%, transparent 100%);
+            padding: 30px;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(15, 26, 61, 0.08);
+            position: relative;
+            flex: 1 1 400px;
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.1);
+            line-height: 1;
+        }
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .client-info img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--dourado);
+            margin-right: 20px;
+        }
+        .client-details h4 {
+            margin: 0;
+            color: var(--azul-profundo);
+            font-weight: 700;
+        }
+        .client-details p {
+            margin: 5px 0 0;
+            color: var(--dourado);
+            font-size: 0.9rem;
+        }
+        .stars {
+            color: var(--dourado);
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        /* Process Steps */
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            position: relative;
+            flex: 1 1 250px;
+        }
+        .step-number {
+            background: linear-gradient(45deg, var(--dourado), #e8c547);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        .step-content h3 {
+            color: var(--azul-profundo);
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+        .step-content p {
+            color: #555;
+            margin: 0;
+        }
+        /* Rodapé */
+        footer {
+            background: var(--azul-profundo);
+            padding: 80px 20px 40px;
+            color: white;
+            position: relative;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .footer-column {
+            flex: 1 1 300px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dourado);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--dourado);
+        }
+        .footer-column p {
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .contact-item i {
+            color: var(--dourado);
+            margin-right: 15px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        .social-link:hover {
+            background: var(--dourado);
+            color: var(--azul-profundo);
+            transform: translateY(-3px);
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            opacity: 0.8;
+            display: block;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--dourado);
+            padding-left: 5px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        /* WhatsApp Flutuante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">KLFDev</a>
+            <div class="nav-links">
+                <a href="#beneficios">Vantagens</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#depoimentos">Clientes</a>
+                <a href="#processo">Processo</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    
+<section class="reveal" class="hero">
+  <div class="hero-flex">
+    <div class="hero-texto">
+      <h1><span id="typing"></span></h1>
+      <p>Desenvolvemos sites premium com design exclusivo, performance excepcional e estratégias comprovadas para aumentar suas vendas.</p>
+      <a href="https://wa.me/5531982245029?text=Olá!%20Gostaria%20de%20solicitar%20uma%20proposta%20para%20criação%20de%20site." target="_blank" class="cta-button">
+        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> FALE PELO WHATSAPP
+      </a>
+    </div>
+    <div class="hero-imagem">
+      <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=800=" alt="Imagem Hero" />
+    </div>
+  </div>
+</section>
+
+
+    <!-- Benefícios -->
+    <section class="reveal" id="beneficios" style="background-color: white;">
+        <h2>Por que escolher a KLFDev?</h2>
+        <div class="flex-container">
+            <div class="card">
+                <i class="fas fa-tachometer-alt"></i>
+                <h3>Performance Excepcional</h3>
+                <p>Sites otimizados que carregam em menos de 2 segundos, reduzindo a taxa de rejeição e melhorando o SEO.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsivo Perfeito</h3>
+                <p>Design adaptável que funciona perfeitamente em todos os dispositivos, garantindo a melhor experiência para seus clientes.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Otimizado para Conversão</h3>
+                <p>Elementos estratégicos posicionados para maximizar contatos e vendas, baseado em psicologia do consumidor.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-lock"></i>
+                <h3>Segurança Robustas</h3>
+                <p>Proteção avançada contra hackers e malwares, com backups diários para sua tranquilidade.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-search"></i>
+                <h3>SEO Integrado</h3>
+                <p>Técnicas avançadas para seu site aparecer nas primeiras posições do Google e gerar tráfego qualificado.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-headset"></i>
+                <h3>Suporte Prioritário</h3>
+                <p>Equipe disponível 24/7 para resolver qualquer questão rapidamente, mantendo seu site sempre no ar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section class="reveal" id="portfolio" style="background-color: #f9f7f2;">
+        <h2>Nossos Trabalhos Recentes</h2>
+        <div class="flex-container">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Site para Restaurante">
+                <div class="portfolio-overlay">
+                    <h3 style="margin: 0 0 10px;">Restaurante Gastronômico</h3>
+                    <p style="margin: 0;">Aumento de 150% nas reservas online</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Site para Consultório">
+                <div class="portfolio-overlay">
+                    <h3 style="margin: 0 0 10px;">Clínica Médica</h3>
+                    <p style="margin: 0;">Agendamentos online triplicaram</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Site para Consultoria">
+                <div class="portfolio-overlay">
+                    <h3 style="margin: 0 0 10px;">Consultoria Financeira</h3>
+                    <p style="margin: 0;">Leads qualificados aumentaram 200%</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Site para E-commerce">
+                <div class="portfolio-overlay">
+                    <h3 style="margin: 0 0 10px;">Loja Virtual</h3>
+                    <p style="margin: 0;">Vendas aumentaram 120% no primeiro mês</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="reveal" id="depoimentos" style="background-color: white;">
+        <h2>O que nossos clientes dizem</h2>
+        <div class="flex-container">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Depois de anos tentando achar um desenvolvedor que realmente entendesse meu negócio, a WebElite superou todas as expectativas. Meu site não só é lindo como já gerou mais de 50 clientes no primeiro trimestre!"</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Cliente Satisfeito">
+                        <div class="client-details">
+                            <h4>Ana Carolina</h4>
+                            <p>Dona de Boutique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Como consultor financeiro, precisava de um site que transmitisse credibilidade. A WebElite captou exatamente o tom profissional que buscava e ainda otimizou para captar leads. Resultado: 3x mais clientes em 2 meses."</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente Satisfeito">
+                        <div class="client-details">
+                            <h4>Ricardo Fernandes</h4>
+                            <p>Consultor Financeiro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Meu restaurante precisava desesperadamente de um site moderno. Além do design incrível, a equipe implementou um sistema de reservas online que simplificou nosso trabalho e aumentou em 80% as reservas noturnas."</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Cliente Satisfeito">
+                        <div class="client-details">
+                            <h4>Carlos Henrique</h4>
+                            <p>Proprietário de Restaurante</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processo -->
+    <section class="reveal" id="processo" style="background-color: #f9f7f2;">
+        <h2>Nosso Processo Criativo</h2>
+        <div class="flex-container" style="max-width: 900px;">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Descoberta</h3>
+                    <p>Questionário detalhado + reunião estratégica para entender seu negócio, objetivos e público-alvo.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Design Exclusivo</h3>
+                    <p>Criação de um layout personalizado que comunica sua marca com elegância e eficácia.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Desenvolvimento</h3>
+                    <p>Programação com tecnologias modernas, otimização para SEO e testes rigorosos em todos os dispositivos.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Treinamento & Entrega</h3>
+                    <p>Sessão personalizada para ensinar você a gerenciar o site + 30 dias de suporte grátis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="reveal" style="padding: 100px 20px; text-align: center; background: linear-gradient(45deg, var(--azul-profundo), #1a2a5a); color: white;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 25px; color: white;">Pronto para transformar sua presença digital?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 40px;">Solicite um orçamento sem compromisso e receba uma proposta personalizada em menos de 24 horas.</p>
+            <a href="#contato" class="cta-button" style="background: linear-gradient(45deg, var(--dourado), #e8c547); color: var(--preto-sutil);">
+                <i class="fas fa-envelope" style="margin-right: 10px;"></i> ENVIAR MENSAGEM
+            </a>
+        </div>
+    </section>
+
+<section class="reveal" style="text-align:center; padding:60px 20px;">
+  <h2 style="margin-bottom: 20px;">Prefere agendar uma conversa?</h2>
+  <p style="font-size: 1.1rem;">Clique abaixo para reservar um horário direto com a gente:</p>
+  <a href="https://calendly.com/seuusuario/30min" target="_blank" class="cta-button" style="margin-top:20px; display:inline-block;">
+    <i class="fas fa-calendar-alt" style="margin-right:10px;"></i> Agendar Reunião
+  </a>
+</section>
+
+
+    <h2>Solicite seu Orçamento</h2>
+  <div class="form-wrapper">
+    <div class="progress-container"><div class="progress-bar"></div></div>
+<form id="multiStepForm" action="https://formsubmit.co/viniciusgabriell2009@gmail.com" method="POST">
+      <div class="step active">
+        <div class="form-group">
+          <label for="nome">Seu nome:</label>
+          <input type="text" id="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp:</label>
+          <input type="tel" id="whatsapp" required>
+        </div>
+        <button type="button" onclick="nextStep()">Próximo</button>
+      </div>
+
+      <div class="step">
+        <div class="form-group">
+          <label for="tipo">Tipo de site desejado:</label>
+          <select id="tipo" required>
+            <option value="">Selecione</option>
+            <option value="Institucional">Institucional</option>
+            <option value="Loja Virtual">Loja Virtual</option>
+            <option value="Landing Page">Landing Page</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <button type="button" onclick="prevStep()">Voltar</button>
+        <button type="button" onclick="nextStep()">Próximo</button>
+      </div>
+
+      <div class="step">
+        <div class="form-group">
+          <label for="descricao">Fale um pouco do seu projeto:</label>
+          <textarea id="descricao" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="prazo">Prazo desejado:</label>
+          <select id="prazo" required>
+            <option value="">Selecione</option>
+            <option value="7 dias">7 dias</option>
+            <option value="15 dias">15 dias</option>
+            <option value="30 dias">30 dias</option>
+            <option value="Sem urgência">Sem urgência</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="orcamento">Orçamento estimado:</label>
+          <select id="orcamento" required>
+            <option value="">Selecione</option>
+            <option value="Até R$500">Até R$500</option>
+            <option value="R$500 a R$1000">R$500 a R$1000</option>
+            <option value="R$1000 a R$2000">R$1000 a R$2000</option>
+            <option value="Acima de R$2000">Acima de R$2000</option>
+          </select>
+        </div>
+        <button type="button" onclick="prevStep()">Voltar</button>
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <h2>Planos Disponíveis</h2>
+  <div class="planos">
+    <div class="plano">
+      <h3>Plano Essencial</h3>
+      <div class="preco">R$497</div>
+      <ul>
+        <li>1 página</li>
+        <li>Design responsivo</li>
+        <li>WhatsApp integrado</li>
+      </ul>
+      <button>Escolher</button>
+    </div>
+    <div class="plano">
+      <h3>Plano Profissional</h3>
+      <div class="preco">R$997</div>
+      <ul>
+        <li>Até 5 páginas</li>
+        <li>SEO básico incluso</li>
+        <li>Formulário de contato</li>
+      </ul>
+      <button>Escolher</button>
+    </div>
+    <div class="plano">
+      <h3>Plano Premium</h3>
+      <div class="preco">R$1497</div>
+      <ul>
+        <li>Site completo + blog</li>
+        <li>SEO + Performance</li>
+        <li>Suporte prioritário</li>
+      </ul>
+      <button>Escolher</button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextStep() {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+    document.getElementById("multiStepForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Orçamento enviado com sucesso! Em breve entrarei em contato via WhatsApp.");
+    });
+  </script>
+
+
+</html>
+
+<!-- Rodapé -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Sobre Nós</h3>
+                <p>A KLFDEV cria sites premium que combinam design impressionante com performance excepcional, ajudando negócios a se destacarem online e aumentarem suas vendas.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#beneficios">Nossos Serviços</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#processo">Processo Criativo</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Fale Conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Belo Horizonte, Brasil</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>(31) 9 8224-5029</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>viniciusgabriell2009@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>(31) 9-8224-5029</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 KLFDEV. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5531982245029" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+  <script src="script.js"></script>
+</body>
+</html>
