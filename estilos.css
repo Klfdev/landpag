@@ -1,0 +1,345 @@
+
+:root {
+  --azul-profundo: #0f1a3d;
+  --dourado: #d4af37;
+  --vermelho-vinho: #a71d31;
+  --creme: #f5f0e6;
+  --preto-sutil: #1a1a1a;
+}
+
+
+body {
+  background: var(--creme) url('https://www.transparenttextures.com/patterns/cloudy-day.png');
+  background-size: 600px 600px;
+  animation: moveClouds 120s linear infinite;
+}
+
+@keyframes moveClouds {
+  0% { background-position: 0 0; }
+  100% { background-position: 10000px 0; }
+}
+
+
+.hero {
+  padding: 150px 20px 100px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(to right, rgba(245, 240, 230, 0.9), rgba(245, 240, 230, 0.7));
+}
+
+.hero-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.hero-texto {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-texto h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--azul-profundo);
+}
+
+.hero-imagem {
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-imagem img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1.5s ease;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--dourado), #e8c547);
+  color: var(--preto-sutil);
+  padding: 17px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 25px;
+  transition: all 0.4s;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsivo */
+@media(min-width: 992px) {
+  .hero-flex {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .hero-texto {
+    padding-right: 40px;
+  }
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(15, 26, 61, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--azul-profundo);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--dourado);
+  outline: none;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+button[type="button"],
+button[type="submit"] {
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.planos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.plano {
+  background: white;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 30px 25px;
+  text-align: center;
+  width: 280px;
+  box-shadow: 0 10px 25px rgba(15, 26, 61, 0.08);
+  transition: all 0.3s ease;
+}
+
+.plano:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(15, 26, 61, 0.15);
+}
+
+.plano h3 {
+  font-size: 1.4rem;
+  color: var(--azul-profundo);
+  margin-bottom: 15px;
+}
+
+.preco {
+  font-size: 1.8rem;
+  color: var(--dourado);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.plano ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.plano ul li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.plano button {
+  background: linear-gradient(45deg, var(--dourado), #e8c547);
+  color: var(--preto-sutil);
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.plano button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+
+
+/* Transições suaves */
+.step {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.step.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efeito glow ao focar */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--dourado);
+  outline: none;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  background-color: #fffef8;
+}
+
+/* Botões com ícone e animação */
+button[type="button"],
+button[type="submit"] {
+  background: linear-gradient(45deg, var(--dourado), #e8c547);
+  color: var(--preto-sutil);
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+button[type="button"]:hover,
+button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+button[type="button"] i,
+button[type="submit"] i {
+  margin-right: 8px;
+}
+
+/* Ajustes Responsivos Mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .hero {
+    padding: 100px 10px 60px;
+  }
+
+  .hero-texto h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-flex {
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .form-wrapper {
+    padding: 20px;
+    margin: 30px 10px;
+  }
+
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .card, .testimonial-card, .process-step, .portfolio-item {
+    margin: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    margin-bottom: 20px;
+  }
+
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .plano {
+    width: 90%;
+    padding: 20px;
+  }
+}
